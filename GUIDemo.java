@@ -15,6 +15,8 @@ public class GUIDemo extends JFrame
     private JPanel panel;
     private JButton biggerButton;
     private JButton smallerButton;
+    private JButton titleChanger;
+    private int counter;
 
     /**
      * Set up the application.
@@ -27,11 +29,14 @@ public class GUIDemo extends JFrame
         panel = new JPanel();
         biggerButton = new JButton("BIGGER");
         smallerButton = new JButton("SMALLER");
+	titleChanger = new JButton("CHANGE TITLE");
         biggerButton.addActionListener(new ButtonHandler());
         smallerButton.addActionListener(new ButtonHandler());
+	titleChanger.addActionListener(new ButtonHandler());
         add(panel);
         panel.add(biggerButton);
         panel.add(smallerButton);
+	panel.add(titleChanger);
         setVisible(true);
     }
 
@@ -53,10 +58,17 @@ public class GUIDemo extends JFrame
             {
                 setSize(size.width + 10, size.height + 10);
             }
-            else
-            {
+            else if (e.getSource().equals(smallerButton))
+		{
                 setSize(size.width - 10, size.height - 10);
-            }
+            } else
+		{
+		counter++;
+		setTitle("Title Button Has Been Pressed " + counter + " times.");
+		}
+	
+
+            
 
         }
     }
